@@ -16,9 +16,8 @@ pub fn decrypt_tally(
         .proposals
         .iter()
         .map(|proposal| {
-            let tally_state = proposal.tally.as_ref().unwrap();
-            let encrypted_tally = tally_state.private_encrypted().unwrap().0.clone();
-            let max_votes = tally_state.private_total_power().unwrap();
+            let encrypted_tally = proposal.tally.private_encrypted().unwrap().clone();
+            let max_votes = proposal.tally.private_total_power().unwrap();
             (encrypted_tally, max_votes)
         })
         .collect::<Vec<_>>();
