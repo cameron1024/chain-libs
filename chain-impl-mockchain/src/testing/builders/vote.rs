@@ -16,7 +16,7 @@ pub fn decrypt_tally(
         .proposals
         .iter()
         .map(|proposal| {
-            let encrypted_tally = proposal.tally.private_encrypted().unwrap().clone();
+            let encrypted_tally = proposal.tally.private_encrypted().unwrap();
             let max_votes = proposal.tally.private_total_power().unwrap();
             (encrypted_tally, max_votes)
         })
