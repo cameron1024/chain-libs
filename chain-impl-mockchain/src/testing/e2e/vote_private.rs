@@ -143,6 +143,8 @@ pub fn vote_on_same_proposal() {
 
     let members = VoteTestGen::committee_members_manager(MEMBERS_NO, THRESHOLD);
 
+    let voting_token = TokenName::try_from(vec![0u8; TOKEN_NAME_MAX_SIZE]).unwrap();
+
     let (mut ledger, controller) = prepare_scenario()
         .with_config(
             ConfigBuilder::new()
@@ -151,6 +153,7 @@ pub fn vote_on_same_proposal() {
         )
         .with_initials(vec![wallet(ALICE)
             .with(1_000)
+            .with_token(voting_token, 1_000)
             .owns(STAKE_POOL)
             .committee_member()])
         .with_vote_plans(vec![vote_plan(VOTE_PLAN)
@@ -212,6 +215,8 @@ pub fn vote_on_different_proposal() {
 
     let members = VoteTestGen::committee_members_manager(MEMBERS_NO, THRESHOLD);
 
+    let voting_token = TokenName::try_from(vec![0u8; TOKEN_NAME_MAX_SIZE]).unwrap();
+
     let (mut ledger, controller) = prepare_scenario()
         .with_config(
             ConfigBuilder::new()
@@ -220,6 +225,7 @@ pub fn vote_on_different_proposal() {
         )
         .with_initials(vec![wallet(ALICE)
             .with(1_000)
+            .with_token(voting_token, 1_000)
             .owns(STAKE_POOL)
             .committee_member()])
         .with_vote_plans(vec![vote_plan(VOTE_PLAN)
